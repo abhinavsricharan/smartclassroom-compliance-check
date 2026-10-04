@@ -1,0 +1,168 @@
+{
+  "version": "1.176.0",
+  "results": [
+    {
+      "check_id": "rules.dpdp-sec16-cloud-endpoint-unverified-region",
+      "path": "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\azure_ml.py",
+      "start": {
+        "line": 86,
+        "col": 14,
+        "offset": 2773
+      },
+      "end": {
+        "line": 86,
+        "col": 70,
+        "offset": 2829
+      },
+      "extra": {
+        "message": "DPDP Section 16 Advisory: Outbound HTTP request to Azure ML endpoint. Ensure the endpoint URL  points to a certified Indian cloud datacenter (e.g., Azure South India / Central India)  in accordance with cross-border transfer restrictions and the DPDP Act.\n",
+        "metadata": {},
+        "severity": "INFO",
+        "fingerprint": "requires login",
+        "lines": "requires login",
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    },
+    {
+      "check_id": "rules.dpdp-sec8-unsalted-password-hash",
+      "path": "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\governance.py",
+      "start": {
+        "line": 58,
+        "col": 12,
+        "offset": 1838
+      },
+      "end": {
+        "line": 58,
+        "col": 64,
+        "offset": 1890
+      },
+      "extra": {
+        "message": "DPDP Section 8 Violation: Passwords hashed using unsalted SHA-256 (`hashlib.sha256`).  Section 8 mandates robust reasonable security safeguards. Use salted PBKDF2 (`hashlib.pbkdf2_hmac`),  bcrypt, or argon2 to protect credentials against precomputation and rainbow table attacks.\n",
+        "metadata": {},
+        "severity": "WARNING",
+        "fingerprint": "requires login",
+        "lines": "requires login",
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    },
+    {
+      "check_id": "rules.dpdp-sec8-unencrypted-audit-file-append",
+      "path": "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\governance.py",
+      "start": {
+        "line": 128,
+        "col": 10,
+        "offset": 4275
+      },
+      "end": {
+        "line": 129,
+        "col": 47,
+        "offset": 4373
+      },
+      "extra": {
+        "message": "DPDP Section 8 Advisory: Direct plain-text JSONL persistence for audit logs and student identifiers.  Ensure sensitive student audit logs are protected with at-rest encryption or restricted filesystem ACLs.\n",
+        "metadata": {},
+        "severity": "INFO",
+        "fingerprint": "requires login",
+        "lines": "requires login",
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    }
+  ],
+  "errors": [],
+  "paths": {
+    "scanned": [
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\app\\auth.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\app\\components.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\app\\streamlit_app.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\azureml\\score.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\__init__.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\alerts.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\aml_train.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\azure_ml.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\config.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\data_generation.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\features.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\governance.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\ingest.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\predict.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\recommendations.py",
+      "A:\\test-dpdp\\smartclassroom-pulsecheck\\src\\classpulse\\train_local.py"
+    ]
+  },
+  "time": {
+    "rules": [],
+    "rules_parse_time": 0.04822802543640137,
+    "profiling_times": {
+      "config_time": 0.12143540382385254,
+      "core_time": 0.4069647789001465,
+      "ignores_time": 5.6743621826171875e-05,
+      "total_time": 0.5413811206817627
+    },
+    "parsing_time": {
+      "total_time": 0.0,
+      "per_file_time": {
+        "mean": 0.0,
+        "std_dev": 0.0
+      },
+      "very_slow_stats": {
+        "time_ratio": 0.0,
+        "count_ratio": 0.0
+      },
+      "very_slow_files": []
+    },
+    "scanning_time": {
+      "total_time": 0.40023231506347656,
+      "per_file_time": {
+        "mean": 0.02501451969146729,
+        "std_dev": 2.853189736384821e-05
+      },
+      "very_slow_stats": {
+        "time_ratio": 0.0,
+        "count_ratio": 0.0
+      },
+      "very_slow_files": []
+    },
+    "matching_time": {
+      "total_time": 0.0,
+      "per_file_and_rule_time": {
+        "mean": 0.0,
+        "std_dev": 0.0
+      },
+      "very_slow_stats": {
+        "time_ratio": 0.0,
+        "count_ratio": 0.0
+      },
+      "very_slow_rules_on_files": []
+    },
+    "tainting_time": {
+      "total_time": 0.0,
+      "per_def_and_rule_time": {
+        "mean": 0.0,
+        "std_dev": 0.0
+      },
+      "very_slow_stats": {
+        "time_ratio": 0.0,
+        "count_ratio": 0.0
+      },
+      "very_slow_rules_on_defs": []
+    },
+    "fixpoint_timeouts": [],
+    "prefiltering": {
+      "project_level_time": 0.0,
+      "file_level_time": 0.0,
+      "rules_with_project_prefilters_ratio": 0.0,
+      "rules_with_file_prefilters_ratio": 0.9,
+      "rules_selected_ratio": 0.15,
+      "rules_matched_ratio": 0.15
+    },
+    "targets": [],
+    "total_bytes": 0,
+    "max_memory_bytes": 150216896
+  },
+  "engine_requested": "OSS",
+  "skipped_rules": [],
+  "profiling_results": []
+}

@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClassPulse - DPDP Act Statutory Compliance Audit</title>
+  <meta name="description" content="Official statutory compliance audit report for ClassPulse (smartclassroom-pulsecheck) under India's Digital Personal Data Protection (DPDP) Act 2023, evaluated by the AI-Gov Compliance Engine.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Sofia+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #09090b;
+      --bg-secondary: #18181b;
+      --border: #27272a;
+      --border-light: #3f3f46;
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --mc-black: #09090b;
+      --mc-card: #18181b;
+      --mc-card-elevated: #27272a;
+      --mc-card-border: #27272a;
+      --mc-border-light: rgba(255, 255, 255, 0.08);
+      --mc-red: #EB001B;
+      --mc-red-muted: rgba(235, 0, 27, 0.15);
+      --mc-orange: #FF5F00;
+      --mc-orange-muted: rgba(255, 95, 0, 0.15);
+      --mc-yellow: #F79E1B;
+      --mc-yellow-muted: rgba(247, 158, 27, 0.15);
+      --mc-text-main: #f4f4f5;
+      --mc-text-sub: #a1a1aa;
+      --mc-text-dim: #71717a;
+      --mc-success: #10B981;
+      --mc-success-bg: rgba(16, 185, 129, 0.15);
+      --mc-warning: #F79E1B;
+      --mc-danger: #EB001B;
+      --mc-gradient: linear-gradient(135deg, #EB001B 0%, #FF5F00 50%, #F79E1B 100%);
+      --mc-font-sans: 'Inter', 'Sofia Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mc-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--mc-black);
+      color: var(--mc-text-main);
+      font-family: var(--mc-font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 90px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: rgba(11, 11, 14, 0.90);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--mc-card-border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 18px 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-accent {
+      width: 12px;
+      height: 32px;
+      border-radius: 4px;
+      background: var(--mc-gradient);
+    }
+
+    .brand-title h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .brand-title .badge-tag {
+      font-size: 0.8rem;
+      color: var(--mc-text-sub);
+      background: var(--mc-card-elevated);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--mc-card-border);
+      font-family: var(--mc-font-mono);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0;
+    }
+
+    .nav-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--mc-text-sub);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .nav-tab:hover {
+      color: var(--mc-text-main);
+      background: var(--mc-card-elevated);
+      border-color: var(--mc-card-border);
+    }
+
+    .nav-tab.active {
+      color: var(--mc-text-main);
+      background: var(--mc-card-elevated);
+      border-color: var(--mc-orange);
+      box-shadow: 0 0 12px rgba(255, 95, 0, 0.25);
+    }
+
+    .btn-action {
+      background: var(--mc-gradient);
+      color: #FFFFFF;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn-action:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 56px 0 36px;
+      border-bottom: 1px solid var(--mc-card-border);
+      background: radial-gradient(circle at 10% 20%, rgba(235, 0, 27, 0.09) 0%, transparent 45%),
+                  radial-gradient(circle at 90% 70%, rgba(247, 158, 27, 0.08) 0%, transparent 45%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      background: var(--mc-orange-muted);
+      border: 1px solid rgba(255, 95, 0, 0.35);
+      border-radius: 20px;
+      color: var(--mc-orange);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+      line-height: 1.15;
+      background: -webkit-linear-gradient(45deg, #EB001B 0%, #FF5F00 50%, #F79E1B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--mc-text-sub);
+      max-width: 980px;
+      margin-bottom: 32px;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .metric-card {
+      background: var(--mc-card);
+      border: 1px solid var(--mc-card-border);
+      border-top: 4px solid var(--mc-orange);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 95, 0, 0.4);
+    }
+
+    .metric-card.red { border-top-color: var(--mc-red); }
+    .metric-card.yellow { border-top-color: var(--mc-yellow); }
+    .metric-card.green { border-top-color: var(--mc-success); }
+    .metric-card.gradient { border-top-color: var(--mc-orange); }
+
+    .metric-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mc-text-sub);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: var(--mc-font-mono);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .metric-desc {
+      font-size: 0.82rem;
+      color: var(--mc-text-dim);
+    }
+
+    .val-danger { color: var(--mc-red); }
+    .val-warning { color: var(--mc-yellow); }
+    .val-success { color: var(--mc-success); }
+    .val-neutral { color: #FFFFFF; }
+
+    /* Section Styles */
+    section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--mc-card-border);
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title .pill {
+      font-size: 0.78rem;
+      padding: 3px 12px;
+      border-radius: 12px;
+      background: var(--mc-card-elevated);
+      color: var(--mc-orange);
+      border: 1px solid rgba(255, 95, 0, 0.3);
+      font-weight: 600;
+      font-family: var(--mc-font-mono);
+    }
+
+    .section-subtitle {
+      font-size: 1.02rem;
+      color: var(--mc-text-sub);
+      max-width: 950px;
+    }
+
+    /* Grids & Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--mc-card);
+      border: 1px solid var(--mc-card-border);
+      border-radius: 14px;
+      padding: 26px;
+      position: relative;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--mc-border-light);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--mc-text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-family: var(--mc-font-mono);
+    }
+
+    .badge-error { background-color: rgba(235, 0, 27, 0.15); color: #EB001B; border: 1px solid #EB001B; }
+    .badge-warning { background-color: rgba(247, 158, 27, 0.15); color: #F79E1B; border: 1px solid #F79E1B; }
+    .badge-info { background-color: rgba(255, 95, 0, 0.15); color: #FF5F00; border: 1px solid #FF5F00; }
+    .badge-success { background-color: rgba(16, 185, 129, 0.15); color: #10B981; border: 1px solid #10B981; }
+    .badge-gray { background-color: var(--mc-card-elevated); color: var(--mc-text-sub); border: 1px solid var(--mc-card-border); }
+
+    .dpdp-section-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(247, 158, 27, 0.1);
+      color: var(--mc-yellow);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .dpdp-section-badge.penalty {
+      background: rgba(235, 0, 27, 0.1);
+      color: var(--mc-red);
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 10px;
+      border: 1px solid var(--mc-card-border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--mc-card-elevated);
+      color: var(--mc-text-sub);
+      font-weight: 600;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--mc-card-border);
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--mc-text-main);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    /* Code Blocks */
+    pre, code {
+      font-family: var(--mc-font-mono);
+    }
+
+    pre {
+      background: #0D0D11;
+      border: 1px solid var(--mc-card-border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 0.84rem;
+      color: #E4E4E7;
+      line-height: 1.55;
+      margin: 14px 0;
+    }
+
+    code.inline {
+      background: rgba(255, 255, 255, 0.09);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.83rem;
+      color: #FFD8A8;
+    }
+
+    /* Gallery / Screenshot Cards */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .snap-card {
+      background: var(--mc-card);
+      border: 1px solid var(--mc-card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .snap-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 95, 0, 0.4);
+    }
+
+    .snap-card-img-wrap {
+      width: 100%;
+      height: 260px;
+      background: #09090C;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid var(--mc-card-border);
+    }
+
+    .snap-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.3s ease;
+    }
+
+    .snap-card:hover .snap-card-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .snap-card-caption {
+      padding: 16px 20px;
+    }
+
+    .snap-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--mc-text-main);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .snap-card-desc {
+      font-size: 0.85rem;
+      color: var(--mc-text-sub);
+    }
+
+    /* Modal / Lightbox */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-content {
+      max-width: 94%;
+      max-height: 92%;
+      border-radius: 12px;
+      border: 1px solid var(--mc-card-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      max-height: 82vh;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--mc-red);
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 2px solid #FFFFFF;
+    }
+
+    /* Statutory Matrix List */
+    .matrix-list {
+      list-style: none;
+    }
+
+    .matrix-item {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .matrix-item:last-child { border-bottom: none; }
+
+    .matrix-section-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--mc-text-main);
+      margin-bottom: 2px;
+    }
+
+    .matrix-section-desc {
+      font-size: 0.84rem;
+      color: var(--mc-text-sub);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--mc-card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--mc-text-dim);
+      font-size: 0.88rem;
+      background: var(--mc-black);
+    }
+
+    .footer-note {
+      color: var(--mc-text-sub);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <div class="brand-title">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--mc-orange)" stroke-width="2.5" aria-hidden="true" style="flex-shrink: 0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div>
+          <h1>DPDP Compliance Engine</h1>
+        </div>
+        <span class="badge-tag">smartclassroom-pulsecheck</span>
+      </div>
+      <nav class="nav-tabs">
+        <a href="#overview" class="nav-tab active">Overview</a>
+        <a href="#matrix" class="nav-tab">Statutory Matrix</a>
+        <a href="#findings" class="nav-tab">Findings & Remediation</a>
+        <a href="#screenshots" class="nav-tab">Engine Screenshots</a>
+        <a href="#codebase" class="nav-tab">Codebase Structure</a>
+        <a href="#downloads" class="nav-tab">Audit Downloads</a>
+      </nav>
+      <a href="reports/classpulse_dpdp_violations.csv" download class="btn-action">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        <span>Download Audit CSV</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="overview">
+    <div class="container">
+      <div class="hero-badge">Statutory Verification Dossier &bull; India DPDP Act 2023</div>
+      <h2>ClassPulse Compliance Verification</h2>
+      <p>
+        Official statutory compliance audit results for <strong>ClassPulse (smartclassroom-pulsecheck)</strong>,
+        evaluated against India's Digital Personal Data Protection (DPDP) Act 2023 via our <strong>AI-Gov Static Application Security Testing (SAST) & OPA Compliance Engine</strong>.
+      </p>
+
+      <div class="metrics-grid">
+        <div class="metric-card gradient">
+          <div class="metric-title">Python Modules Scanned</div>
+          <div class="metric-value val-neutral">16</div>
+          <div class="metric-desc">100% of repository Python AST parsed</div>
+        </div>
+        <div class="metric-card yellow">
+          <div class="metric-title">Active DPDP Rules</div>
+          <div class="metric-value val-neutral">10</div>
+          <div class="metric-desc">Sections 5, 6, 7, 8, 9, 12, 16</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-title">Findings / Advisories</div>
+          <div class="metric-value val-warning">3</div>
+          <div class="metric-desc">1 Security Warning &bull; 2 Operational Advisories</div>
+        </div>
+        <div class="metric-card red">
+          <div class="metric-title">OPA Compliance Gate</div>
+          <div class="metric-value val-warning">CONDITIONAL</div>
+          <div class="metric-desc">Approved pending password salt hardening</div>
+        </div>
+      </div>
+
+      <!-- Quick Executive Summary Card -->
+      <div class="card" style="margin-top: 20px;">
+        <div class="card-header">
+          <div class="card-title">Executive Summary &amp; Compliance Verdict</div>
+          <span class="badge badge-warning">Conditional Pass</span>
+        </div>
+        <p style="color: var(--mc-text-sub); font-size: 0.96rem; margin-bottom: 16px;">
+          The <strong>ClassPulse</strong> learning prototype demonstrates high privacy-by-design alignment:
+          it scores exclusively synthetic data, mandates human faculty advisor reviews for all student check-ins, processes uploaded CSVs entirely in RAM without disk retention,
+          and automatically purges audit entries on a 30-day sliding TTL window.
+        </p>
+        <p style="color: var(--mc-text-sub); font-size: 0.96rem;">
+          Our compliance engine flagged <strong>1 Warning</strong> regarding unsalted SHA-256 password hashing in <code class="inline">governance.py</code> (Section 8 reasonable security safeguards),
+          along with <strong>2 Advisories</strong> regarding plaintext file persistence for audit records and verifying data localization for Azure ML South India cloud endpoints (Section 16).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statutory Alignment Matrix -->
+  <section id="matrix">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          DPDP Statutory Alignment Matrix
+          <span class="pill">Statutory Sections 1 to 16</span>
+        </div>
+        <div class="section-subtitle">
+          Direct legal mapping of the ClassPulse codebase against the Digital Personal Data Protection Act, 2023.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- Notice & Consent -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Sec 5 &amp; 6: Notice &amp; Consent</div>
+            <span class="badge badge-success">Passed</span>
+          </div>
+          <ul class="matrix-list">
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Explicit Disclaimer Notice (Sec 5)</div>
+                <div class="matrix-section-desc">ClassPulse prominently renders disclaimer banners across all screens emphasizing synthetic demo data.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Human-in-the-Loop Review (Sec 6)</div>
+                <div class="matrix-section-desc">Model scores open risk review alerts; only a human advisor decides and records formal interventions.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">No Automated Decisions</div>
+                <div class="matrix-section-desc">No academic decisions are executed autonomously by AI models.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Minimization & Security -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Sec 8: Minimization &amp; Security</div>
+            <span class="badge badge-warning">Needs Action</span>
+          </div>
+          <ul class="matrix-list">
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">In-Memory Ingestion (Sec 8)</div>
+                <div class="matrix-section-desc">Uploaded CSV files are parsed in memory using BytesIO and never written to persistent disk storage.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Automated Retention Purge (Sec 8)</div>
+                <div class="matrix-section-desc">Audit logs older than 30 days are automatically deleted on application initialization.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Password Hashing Safeguard (Sec 8)</div>
+                <div class="matrix-section-desc">Unsalted SHA-256 hashing requires upgrading to salted PBKDF2/bcrypt.</div>
+              </div>
+              <span class="badge badge-warning">Warning</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Audit File Persistence (Sec 8)</div>
+                <div class="matrix-section-desc">Audit log JSONL records should be transitioned to encrypted DB storage.</div>
+              </div>
+              <span class="badge badge-info">Advisory</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Minors, Erasure & Cross-Border -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Sec 9, 12, 16: Minors, Erasure &amp; Geo</div>
+            <span class="badge badge-success">Compliant</span>
+          </div>
+          <ul class="matrix-list">
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Zero Minors' Tracking (Sec 9)</div>
+                <div class="matrix-section-desc">Zero behavioral ad-trackers, telemetry, or third-party pixel SDKs present in codebase.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Right to Erasure (Sec 12)</div>
+                <div class="matrix-section-desc"><code class="inline">purge_expired()</code> executes hard deletion of lines rather than soft-delete flags.</div>
+              </div>
+              <span class="badge badge-success">Compliant</span>
+            </li>
+            <li class="matrix-item">
+              <div>
+                <div class="matrix-section-title">Cross-Border Geo Boundary (Sec 16)</div>
+                <div class="matrix-section-desc">Azure hosting is set to South India; ensure Azure ML scoring endpoint maintains local domain.</div>
+              </div>
+              <span class="badge badge-info">Advisory</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Findings & Engineering Remediation Plans -->
+  <section id="findings">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          Detailed Findings &amp; Engineering Remediation
+          <span class="pill">Line-Level Audit</span>
+        </div>
+        <div class="section-subtitle">
+          Comprehensive breakdown of every item flagged by the static analysis engine, including the exact source code, statutory impact, and concrete remediation steps.
+        </div>
+      </div>
+
+      <!-- Item 1: Unsalted Password Hash -->
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--mc-yellow);">
+        <div class="card-header">
+          <div>
+            <span class="badge badge-warning" style="margin-right: 8px;">Warning</span>
+            <span class="card-title" style="display: inline-block;">1. Unsalted SHA-256 Password Hashing - DPDP Section 8</span>
+          </div>
+          <span class="badge badge-gray mono">src/classpulse/governance.py : Line 58</span>
+        </div>
+        
+        <p style="color: var(--mc-text-sub); font-size: 0.92rem; margin-bottom: 12px;">
+          <strong>Diagnostic Message:</strong> Passwords hashed using unsalted SHA-256 (<code class="inline">hashlib.sha256</code>). Section 8 mandates reasonable security safeguards to protect personal data.
+        </p>
+
+        <pre><code># Flagged Code (src/classpulse/governance.py:57-58):
+def hash_password(password: str) -> str:
+    return hashlib.sha256(password.encode("utf-8")).hexdigest()</code></pre>
+
+        <div style="background: var(--mc-card-elevated); border: 1px solid var(--mc-card-border); border-radius: 8px; padding: 18px; margin-top: 14px;">
+          <h4 style="color: var(--mc-yellow); font-size: 0.95rem; margin-bottom: 8px;">Statutory Risk Analysis &amp; Technical Remediation</h4>
+          <p style="color: var(--mc-text-sub); font-size: 0.88rem; margin-bottom: 12px;">
+            <strong>Legal Impact:</strong> Section 8(5) of the DPDP Act obligates data fiduciaries to implement reasonable security safeguards to prevent personal data breaches.
+            Unsalted SHA-256 hashes are susceptible to precomputed rainbow table lookups if the <code class="inline">CLASSPULSE_USERS</code> environment variable is exposed.
+          </p>
+          <p style="color: var(--mc-text-sub); font-size: 0.88rem; margin-bottom: 8px;">
+            <strong>Recommended Engineering Fix:</strong> Upgrade to key-stretched, salted PBKDF2 (<code class="inline">hashlib.pbkdf2_hmac</code>) or migrate to institutional Microsoft Entra ID (Azure AD) SSO:
+          </p>
+          <pre><code>import hashlib, secrets
+
+def hash_password_secure(password: str, salt: bytes | None = None) -> str:
+    salt = salt or secrets.token_bytes(16)
+    key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100_000)
+    return f"{salt.hex()}:{key.hex()}"</code></pre>
+        </div>
+      </div>
+
+      <!-- Item 2: Unencrypted Audit Log -->
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--mc-orange);">
+        <div class="card-header">
+          <div>
+            <span class="badge badge-info" style="margin-right: 8px;">Advisory</span>
+            <span class="card-title" style="display: inline-block;">2. Plaintext JSONL Audit Trail - DPDP Section 8</span>
+          </div>
+          <span class="badge badge-gray mono">src/classpulse/governance.py : Line 128</span>
+        </div>
+        
+        <p style="color: var(--mc-text-sub); font-size: 0.92rem; margin-bottom: 12px;">
+          <strong>Diagnostic Message:</strong> Direct plain-text JSONL persistence for audit logs and student identifiers. Ensure student audit trails are protected with at-rest encryption and concurrency safeguards.
+        </p>
+
+        <pre><code># Flagged Code (src/classpulse/governance.py:127-129):
+destination = path or AUDIT_LOG_PATH
+with destination.open("a", encoding="utf-8") as handle:
+    handle.write(json.dumps(entry) + "\n")</code></pre>
+
+        <div style="background: var(--mc-card-elevated); border: 1px solid var(--mc-card-border); border-radius: 8px; padding: 18px; margin-top: 14px;">
+          <h4 style="color: var(--mc-orange); font-size: 0.95rem; margin-bottom: 8px;">Statutory Risk Analysis &amp; Technical Remediation</h4>
+          <p style="color: var(--mc-text-sub); font-size: 0.88rem; margin-bottom: 8px;">
+            <strong>Operational Context:</strong> While default student data is synthetic (<code class="inline">S001</code>...), real deployments must protect audit trails from unauthorized filesystem access.
+            Additionally, plain file appends without POSIX locks (<code class="inline">fcntl</code> / <code class="inline">portalocker</code>) risk corrupted lines if multiple advisors access the system concurrently.
+          </p>
+          <p style="color: var(--mc-text-sub); font-size: 0.88rem;">
+            <strong>Recommended Engineering Fix:</strong> Transition from flat-file JSONL to Azure Table Storage with Customer-Managed Keys, PostgreSQL with Transparent Data Encryption (TDE), or SQLite in WAL mode.
+          </p>
+        </div>
+      </div>
+
+      <!-- Item 3: Cross-Border Cloud Endpoint -->
+      <div class="card" style="margin-bottom: 24px; border-left: 4px solid var(--mc-orange);">
+        <div class="card-header">
+          <div>
+            <span class="badge badge-info" style="margin-right: 8px;">Advisory</span>
+            <span class="card-title" style="display: inline-block;">3. Cloud Scoring Endpoint Boundary - DPDP Section 16</span>
+          </div>
+          <span class="badge badge-gray mono">src/classpulse/azure_ml.py : Line 86</span>
+        </div>
+        
+        <p style="color: var(--mc-text-sub); font-size: 0.92rem; margin-bottom: 12px;">
+          <strong>Diagnostic Message:</strong> Outbound HTTP request to Azure ML endpoint. Ensure the endpoint URL points to a certified Indian cloud datacenter (e.g., Azure South India / Central India).
+        </p>
+
+        <pre><code># Flagged Code (src/classpulse/azure_ml.py:86-87):
+with urllib.request.urlopen(request, timeout=TIMEOUT_SECONDS) as response:
+    raw = response.read().decode("utf-8")</code></pre>
+
+        <div style="background: var(--mc-card-elevated); border: 1px solid var(--mc-card-border); border-radius: 8px; padding: 18px; margin-top: 14px;">
+          <h4 style="color: var(--mc-orange); font-size: 0.95rem; margin-bottom: 8px;">Statutory Risk Analysis &amp; Technical Remediation</h4>
+          <p style="color: var(--mc-text-sub); font-size: 0.88rem; margin-bottom: 8px;">
+            <strong>Data Localization Context:</strong> Section 16 restricts transferring personal data outside India, particularly to countries notified on the Central Government negative list.
+          </p>
+          <p style="color: var(--mc-text-sub); font-size: 0.88rem;">
+            <strong>Remediation Verification:</strong> The Terraform infrastructure in <code class="inline">infra/hosting/main.tf</code> targets <code class="inline">southindia</code> (Chennai/Pune). Verify that the Azure ML endpoint deployed adheres strictly to Indian regions to ensure zero cross-border transmission.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engine Screenshots Gallery -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          Compliance Engine Output &amp; Verification Evidence
+          <span class="pill">8 Dashboard Captures</span>
+        </div>
+        <div class="section-subtitle">
+          Direct output captures from the AI-Gov Compliance Streamlit Dashboard demonstrating live AST scanning, metrics aggregation, statutory section charts, and line-level engineering analysis.
+        </div>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Snap 1 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/command-center-full.png', 'Command Center - Executive Metrics & Matrix')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/command-center-full.png" alt="Command Center Output">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Command Center Overview</span>
+              <span class="badge badge-warning">Conditional Pass</span>
+            </div>
+            <div class="snap-card-desc">16 Python modules scanned, 10 active DPDP rules, and statutory matrix.</div>
+          </div>
+        </div>
+
+        <!-- Snap 2 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/statutory-charts.png', 'Findings by Section & Files Requiring Remediation')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/statutory-charts.png" alt="Statutory Charts Breakdown">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Statutory Section Analytics</span>
+              <span class="badge badge-info">Charts</span>
+            </div>
+            <div class="snap-card-desc">Categorized findings by DPDP Section (Sec 8 vs Sec 16) and target files.</div>
+          </div>
+        </div>
+
+        <!-- Snap 3 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/audit-log-table.png', 'DPDP Statutory Audit Log & Export View')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/audit-log-table.png" alt="Audit Log Table">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Statutory Audit Log Table</span>
+              <span class="badge badge-gray">Audit Log</span>
+            </div>
+            <div class="snap-card-desc">Detailed line-by-line enforcement breakdown and CSV export functionality.</div>
+          </div>
+        </div>
+
+        <!-- Snap 4 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/remediation-sec8-password-hash.png', 'Section 8 Password Hash Deep Dive & Fix')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/remediation-sec8-password-hash.png" alt="Password Hash Remediation">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Section 8: Password Salting</span>
+              <span class="badge badge-warning">Remediation</span>
+            </div>
+            <div class="snap-card-desc">Diagnostic alert and cryptographic code fix for unsalted SHA-256 hash.</div>
+          </div>
+        </div>
+
+        <!-- Snap 5 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/remediation-sec8-audit-log.png', 'Section 8 Plaintext Audit Trail Deep Dive')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/remediation-sec8-audit-log.png" alt="Audit Log Remediation">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Section 8: Storage Safeguards</span>
+              <span class="badge badge-info">Advisory</span>
+            </div>
+            <div class="snap-card-desc">Analysis of JSONL file persistence and encryption-at-rest recommendations.</div>
+          </div>
+        </div>
+
+        <!-- Snap 6 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/remediation-sec16-crossborder.png', 'Section 16 Cloud Endpoint Geographic Boundary')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/remediation-sec16-crossborder.png" alt="Cross Border Remediation">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Section 16: Cloud Boundary</span>
+              <span class="badge badge-info">Advisory</span>
+            </div>
+            <div class="snap-card-desc">Geographic data localization check for Azure ML South India endpoint.</div>
+          </div>
+        </div>
+
+        <!-- Snap 7 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/codebase-explorer.png', 'Target Codebase Explorer Interface')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/codebase-explorer.png" alt="Codebase Explorer">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Target Codebase Explorer</span>
+              <span class="badge badge-gray">Explorer</span>
+            </div>
+            <div class="snap-card-desc">Interactive multi-file code inspector for Python domain modules.</div>
+          </div>
+        </div>
+
+        <!-- Snap 8 -->
+        <div class="snap-card" onclick="openModal('assets/snaps/command-center.png', 'Command Center Header View')">
+          <div class="snap-card-img-wrap">
+            <img src="assets/snaps/command-center.png" alt="Command Center Header">
+          </div>
+          <div class="snap-card-caption">
+            <div class="snap-card-title">
+              <span>Executive Posture Gauges</span>
+              <span class="badge badge-warning">Command Center</span>
+            </div>
+            <div class="snap-card-desc">Top-level statutory status gauges and target codebase binding.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Codebase Structure Section -->
+  <section id="codebase">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          ClassPulse Codebase Architecture &amp; Scanned Modules
+          <span class="pill">16 Python Modules</span>
+        </div>
+        <div class="section-subtitle">
+          Summary of scanned components and their statutory privacy responsibilities.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Core Domain Engine (`src/classpulse/`)</div>
+            <span class="badge badge-gray">11 Files</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Module</th>
+                  <th>Primary Function</th>
+                  <th>DPDP Sensitivity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="inline">governance.py</code></td>
+                  <td>User authentication, RBAC permissions, audit log & 30-day retention purge</td>
+                  <td><span class="badge badge-warning">High</span> (Credentials & Logs)</td>
+                </tr>
+                <tr>
+                  <td><code class="inline">predict.py</code></td>
+                  <td>Prediction orchestrator, online Azure ML invocation with local baseline fallback</td>
+                  <td><span class="badge badge-info">Medium</span> (Model Inference)</td>
+                </tr>
+                <tr>
+                  <td><code class="inline">alerts.py</code></td>
+                  <td>Advisor queue, high-priority alert generation with 7-day cooldown</td>
+                  <td><span class="badge badge-success">Human-in-the-Loop</span></td>
+                </tr>
+                <tr>
+                  <td><code class="inline">azure_ml.py</code></td>
+                  <td>REST client calling Azure ML Managed Online Endpoint</td>
+                  <td><span class="badge badge-info">Medium</span> (Cloud Ingress)</td>
+                </tr>
+                <tr>
+                  <td><code class="inline">ingest.py</code></td>
+                  <td>Validates uploaded CSVs in RAM; strictly zero persistence to disk</td>
+                  <td><span class="badge badge-success">Minimization</span></td>
+                </tr>
+                <tr>
+                  <td><code class="inline">data_generation.py</code></td>
+                  <td>Generates deterministic synthetic student records with fixed seed</td>
+                  <td><span class="badge badge-success">Synthetic Only</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Presentation &amp; Cloud Scoring (`app/` &amp; `azureml/`)</div>
+            <span class="badge badge-gray">5 Files</span>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Module</th>
+                  <th>Primary Function</th>
+                  <th>DPDP Sensitivity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code class="inline">app/auth.py</code></td>
+                  <td>Streamlit session authentication gate and user session clearing</td>
+                  <td><span class="badge badge-warning">Session Auth</span></td>
+                </tr>
+                <tr>
+                  <td><code class="inline">app/streamlit_app.py</code></td>
+                  <td>Multi-tab user interface, filter controls, CSV upload handling</td>
+                  <td><span class="badge badge-success">Notice & Disclaimers</span></td>
+                </tr>
+                <tr>
+                  <td><code class="inline">app/components.py</code></td>
+                  <td>Results table, advisor follow-up form, governance & audit panels</td>
+                  <td><span class="badge badge-success">Human Action Log</span></td>
+                </tr>
+                <tr>
+                  <td><code class="inline">azureml/score.py</code></td>
+                  <td>Scoring script running inside Azure ML container</td>
+                  <td><span class="badge badge-gray">Endpoint Harness</span></td>
+                </tr>
+                <tr>
+                  <td><code class="inline">infra/hosting/main.tf</code></td>
+                  <td>Terraform hosting module deploying to Azure South India</td>
+                  <td><span class="badge badge-success">Data Localization</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Downloads & Repos Section -->
+  <section id="downloads">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">
+          Audit Artifacts &amp; Machine-Readable Exports
+          <span class="pill">Client Resources</span>
+        </div>
+        <div class="section-subtitle">
+          Download the statutory audit log, machine-readable JSON AST reports, and active compliance rules.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="text-align: center;">
+          <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--mc-orange);">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Audit Findings CSV</h3>
+          <p style="color: var(--mc-text-sub); font-size: 0.85rem; margin-bottom: 18px;">
+            Full line-by-line enforcement export including DPDP section tags, severity levels, rule IDs, and remediation guidance.
+          </p>
+          <a href="reports/classpulse_dpdp_violations.csv" download class="btn-action" style="width: 100%; justify-content: center;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <span>Download CSV Report</span>
+          </a>
+        </div>
+
+        <div class="card" style="text-align: center;">
+          <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--mc-gold);">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Raw AST Scan JSON</h3>
+          <p style="color: var(--mc-text-sub); font-size: 0.85rem; margin-bottom: 18px;">
+            Complete machine-readable Semgrep JSON scan report with code spans, metadata timestamps, and AST node locations.
+          </p>
+          <a href="reports/dpdp_scan_results.json" download class="btn-action" style="width: 100%; justify-content: center; background: var(--mc-card-elevated); border: 1px solid var(--mc-card-border);">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <span>Download Raw JSON</span>
+          </a>
+        </div>
+
+        <div class="card" style="text-align: center;">
+          <div style="display: flex; justify-content: center; margin-bottom: 14px; color: var(--mc-red);">
+            <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Active DPDP Rules YAML</h3>
+          <p style="color: var(--mc-text-sub); font-size: 0.85rem; margin-bottom: 18px;">
+            Consolidated Python DPDP AST ruleset mapping statutory requirements to Tree-sitter code patterns.
+          </p>
+          <a href="rules/python_dpdp_rules.yaml" download class="btn-action" style="width: 100%; justify-content: center; background: var(--mc-card-elevated); border: 1px solid var(--mc-card-border);">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <span>Download Rules YAML</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal / Lightbox -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-close" onclick="closeModal()">&times;</div>
+      <img id="modalImg" src="" alt="Engine Screenshot Full View">
+      <div id="modalCaption" style="padding: 12px; color: var(--mc-text-sub); font-size: 0.9rem; text-align: center;"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="font-weight: 700; color: var(--mc-text-main);">ClassPulse DPDP Statutory Compliance Review</div>
+      <div class="footer-note">
+        Evaluated by <strong>AI-Gov DPDP Compliance Engine</strong> &bull; India Digital Personal Data Protection Act, 2023 &bull; Mastercard Dark Theme &bull; Zero Brand Logos Used
+      </div>
+      <div style="font-size: 0.8rem; color: var(--mc-text-dim); margin-top: 8px;">
+        Repository: <a href="https://github.com/abhinavsricharan/smartclassroom-compliance-check" style="color: var(--mc-orange); text-decoration: none;">smartclassroom-compliance-check</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openModal(src, caption) {
+      const modal = document.getElementById('imageModal');
+      const img = document.getElementById('modalImg');
+      const cap = document.getElementById('modalCaption');
+      img.src = src;
+      cap.innerText = caption;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Active Tab Highlight on Scroll
+    document.addEventListener("DOMContentLoaded", () => {
+      const navLinks = document.querySelectorAll(".nav-tab");
+      const sections = document.querySelectorAll("section");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

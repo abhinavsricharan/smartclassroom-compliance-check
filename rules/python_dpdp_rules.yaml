@@ -1,0 +1,171 @@
+rules:
+  # -------------------------------------------------------------
+  # DPDP Section 6 & 7: Consent & Legitimate Uses (OPA Enforcement)
+  # -------------------------------------------------------------
+  - id: dpdp-sec6-bypass-opa-authz
+    message: >
+      DPDP Violation (Sec 6): PII database write detected without an OPA authorization check. 
+      All data processing must first be validated by the OPA orchestrator.
+    severity: ERROR
+    languages:
+      - python
+    patterns:
+      - pattern-either:
+          - pattern: db.session.add(...)
+          - pattern: db.session.commit()
+          - pattern: $MODEL.save(...)
+      - pattern-not-inside: |
+          if opa_engine.evaluate(...):
+              ...
+      - pattern-not-inside: |
+          if check_opa_authz(...):
+              ...
+
+  - id: dpdp-sec6-missing-consent-decorator
+    patterns:
+      - pattern: |
+          def $FUNC(..., $PII_ARG, ...):
+              ...
+      - metavariable-regex:
+          metavariable: $PII_ARG
+          regex: (?i)(aadhaar|pan|email|phone)
+      - pattern-not-inside: |
+          @requires_dpdp_consent
+          def $FUNC(...):
+              ...
+    message: "DPDP Section 6 Violation: Function `$FUNC` processes PII (`$PII_ARG`) but is missing the `@requires_dpdp_consent` decorator."
+    severity: ERROR
+    languages:
+      - python
+
+  - id: py-missing-consent-verification
+    patterns:
+      - pattern-inside: |
+          @router.post(...)
+          async def $FUNC(...):
+            ...
+      - pattern: |
+          db.save_user_data(...)
+      - pattern-not-inside: |
+          if $DATA.get("consent_granted"):
+            ...
+    message: "DPDP Section 6 Violation: PII is being saved to the database without explicit verification of user consent."
+    severity: ERROR
+    languages:
+      - python
+
+  # -------------------------------------------------------------
+  # DPDP Section 8: Data Minimization & Reasonable Security Safeguards
+  # -------------------------------------------------------------
+  - id: dpdp-sec8-data-minimization-cache
+    message: >
+      DPDP Violation (Sec 8): Storing personal data in cache without a Time-To-Live (TTL). 
+      The DPDP Act requires data to be minimized and not stored longer than the fulfilled purpose. 
+      Add an 'ex' or 'expire' parameter to your cache store.
+    severity: WARNING
+    languages:
+      - python
+    patterns:
+      - pattern-either:
+          - pattern: redis.set($KEY, $VAL)
+          - pattern: cache.set($KEY, $VAL)
+      - pattern-not: redis.set($KEY, $VAL, ex=$TIME)
+      - pattern-not: cache.set($KEY, $VAL, timeout=$TIME)
+
+  - id: dpdp-sec8-unsalted-password-hash
+    message: >
+      DPDP Section 8 Violation: Passwords hashed using unsalted SHA-256 (`hashlib.sha256`). 
+      Section 8 mandates robust reasonable security safeguards. Use salted PBKDF2 (`hashlib.pbkdf2_hmac`), 
+      bcrypt, or argon2 to protect credentials against precomputation and rainbow table attacks.
+    severity: WARNING
+    languages:
+      - python
+    patterns:
+      - pattern-either:
+          - pattern-inside: |
+              def hash_password(...):
+                  ...
+          - pattern: hashlib.sha256($PASSWORD.encode(...)).hexdigest()
+          - pattern: hashlib.sha256($PASSWORD.encode()).hexdigest()
+      - metavariable-regex:
+          metavariable: $PASSWORD
+          regex: (?i)(password|pass|secret|cred)
+
+  - id: dpdp-sec8-unencrypted-audit-file-append
+    message: >
+      DPDP Section 8 Advisory: Direct plain-text JSONL persistence for audit logs and student identifiers. 
+      Ensure sensitive student audit logs are protected with at-rest encryption or restricted filesystem ACLs.
+    severity: INFO
+    languages:
+      - python
+    patterns:
+      - pattern-inside: |
+          def record_event(...):
+              ...
+      - pattern: |
+          with $DEST.open("a", ...) as $H:
+              $H.write(json.dumps($ENTRY) + "\n")
+
+  # -------------------------------------------------------------
+  # DPDP Section 9: Processing of Children's & Minors' Data
+  # -------------------------------------------------------------
+  - id: dpdp-sec9-children-tracking
+    message: >
+      DPDP Violation (Sec 9): Behavioral tracking or targeted advertising SDKs cannot be invoked 
+      without explicitly ensuring the user is not a child or has verifiable parental consent.
+    severity: ERROR
+    languages:
+      - python
+    patterns:
+      - pattern-either:
+          - pattern: mixpanel.track(...)
+          - pattern: segment.track(...)
+          - pattern: google_analytics.send(...)
+      - pattern-not-inside: |
+          if not is_child(...):
+              ...
+      - pattern-not-inside: |
+          if has_parental_consent(...):
+              ...
+
+  # -------------------------------------------------------------
+  # DPDP Section 12: Principal Rights (Right to Erasure)
+  # -------------------------------------------------------------
+  - id: dpdp-sec12-erasure-soft-delete
+    message: >
+      DPDP Violation (Sec 12): Soft deleting user records (e.g., setting is_active=False) may violate 
+      the Data Principal's Right to Erasure. Unless legally mandated to retain the data, you must 
+      perform a hard delete (e.g., db.session.delete(user)).
+    severity: WARNING
+    languages:
+      - python
+    pattern: $USER.is_active = False
+
+  # -------------------------------------------------------------
+  # DPDP Section 16: Cross-Border Data Transfer
+  # -------------------------------------------------------------
+  - id: dpdp-sec16-cross-border-transfer
+    message: >
+      DPDP Violation (Sec 16): Potential hardcoded cross-border data transfer detected. 
+      Do not hardcode foreign API endpoints. Transfers must be checked against the DPDP Negative List.
+    severity: ERROR
+    languages:
+      - python
+    pattern-either:
+      - pattern: requests.post("https://api.foreign-service.com/...", ...)
+      - pattern: httpx.post("https://api.foreign-service.com/...", ...)
+
+  - id: dpdp-sec16-cloud-endpoint-unverified-region
+    message: >
+      DPDP Section 16 Advisory: Outbound HTTP request to Azure ML endpoint. Ensure the endpoint URL 
+      points to a certified Indian cloud datacenter (e.g., Azure South India / Central India) 
+      in accordance with cross-border transfer restrictions and the DPDP Act.
+    severity: INFO
+    languages:
+      - python
+    patterns:
+      - pattern-inside: |
+          def score(..., settings: $SETTINGS):
+              ...
+      - pattern: |
+          urllib.request.urlopen($REQ, timeout=...)
